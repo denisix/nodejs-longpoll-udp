@@ -1,6 +1,8 @@
 # nodejs-longpoll-udp
 Longpoll server that listens to UDP dgrams in realtime (concept)
 
+![Screenshot](/demo.jpg?raw=true "Screenshot")
+
 # prerequirements:
 * npm (https://www.npmjs.com/package/npm)
 * netcat (for windows you can use for example https://github.com/diegocr/netcat)
