@@ -7,7 +7,7 @@ Longpoll server that listens to UDP dgrams in realtime (concept)
 # usage
 ```
 git clone https://github.com/denisix/nodejs-longpoll-udp
-cd https://github.com/denisix/nodejs-longpoll-udp
+cd nodejs-longpoll-udp
 npm install
 npm start
 ```
