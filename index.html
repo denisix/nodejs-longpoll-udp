@@ -1,0 +1,39 @@
+<html>
+<head>
+	<script type="text/javascript" src="/jquery-1.5.min.js"></script>
+
+<script>
+
+var subscribe = function(url, cb) {
+        $.ajax({
+            method: 'GET',
+            url: url,
+            success: function(data) {
+                cb(data);
+            },
+            complete: function() {
+                setTimeout(function() {
+                    subscribe(url, cb);
+                }, 1000);
+            },
+            timeout: 30000
+        });
+    };
+    
+subscribe("/poll", function (data) {
+  console.log("Data:", data);
+  var t = $('#data').html();
+  t = t + '<p>' + data.text + '</p>';
+  $('#data').html(t);
+});
+
+</script>
+</head>
+<body>
+
+Result:
+<div id="data" style='width:100%;height:500px;display:block;border:1px solid block'> ... <br/>
+
+</div>
+</body>
+</html>

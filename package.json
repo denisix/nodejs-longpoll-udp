@@ -1,0 +1,11 @@
+{
+	"name": "logpoll-udp-demo",
+	"version": "0.01",
+	"description": "Longpoll server that listens to UDP dgrams in realtime",
+	"author": "Den <denisix@gmail.com>",
+	"main": "server.js",
+	"license": "MIT",
+	"dependencies": {
+		"express-longpoll": "*"
+	}
+}
