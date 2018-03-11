@@ -2,9 +2,16 @@
 Longpoll server that listens to UDP dgrams in realtime (concept)
 
 # usage
-```nodejs server.js```
+```
+git clone https://github.com/denisix/nodejs-longpoll-udp
+cd https://github.com/denisix/nodejs-longpoll-udp
+npm install
+npm start
+```
 
 then open http://localhost:8080 in your browser
+```nc -u 0 5514```
+type something + Enter and you will see the result in your browser
 
 # files
 ```
