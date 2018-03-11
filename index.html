@@ -8,8 +8,8 @@ var subscribe = function(url, cb) {
         $.ajax({
             method: 'GET',
             url: url,
-            success: function(data) {
-                cb(data);
+            success: function(d) {
+                cb(d);
             },
             complete: function() {
                 setTimeout(function() {
@@ -20,11 +20,11 @@ var subscribe = function(url, cb) {
         });
     };
     
-subscribe("/poll", function (data) {
-  console.log("Data:", data);
-  var t = $('#data').html();
-  t = t + '<p>' + data.text + '</p>';
-  $('#data').html(t);
+subscribe("/poll", function (d) {
+  console.log("Data:", d);
+  var t = $("#data").html();
+  t = t + "<p>" + d.src_addr +":"+ d.src_port +" ["+ d.size +"]: "+ d.msg +"</p>";
+  $("#data").html(t);
 });
 
 </script>
