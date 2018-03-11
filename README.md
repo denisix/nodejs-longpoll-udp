@@ -14,7 +14,8 @@ npm start
 
 then open http://localhost:8080 in your browser
 
-execute in your linux console (netcat should be installed to be able to do this):
+start netcat in your linux console and connect to this udp server (netcat should be installed to be able to do this):
+
 ```nc -u 0 5514```
 
 type something + Enter and you will see the result in your browser
