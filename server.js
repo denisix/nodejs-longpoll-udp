@@ -29,7 +29,7 @@ var socket = dgram.createSocket('udp4')
 
 
 socket.on('message', function(msg, rinfo) {
-	console.log('-'+ rinfo.address +':'+ rinfo.port +' ['+ rinfo.size +'] => ' + msg.toString() + "\n");
+	console.log('- '+ rinfo.address +' : '+ rinfo.port +' '+ rinfo.size +'b => ' + msg.toString() + "\n");
 	longpoll.publish("/poll", { 
 		src_addr: rinfo.address,
 		src_port: rinfo.port,
