@@ -29,4 +29,5 @@ jquery-1.5.min.js - jquery library to make life easier
 ```
 
 # dependencies
-based on https://www.npmjs.com/package/express-longpoll
+* express-longpoll - long-poll nodejs plugin from https://www.npmjs.com/package/express-longpoll
+* hexdump - client-side rendering plugin from http://mephux.github.io/hexdump.js/
