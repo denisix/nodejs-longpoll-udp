@@ -1,7 +1,31 @@
 <html>
 <head>
-	<script type="text/javascript" src="/jquery-1.5.min.js"></script>
+<style>
+html, body {
+	background:#000;
+	font-size:14px;
+	color:#fff;
+}
+p { color: #eee; }
+pre { font-size: 15px; width:100%; border: 1px solid #777; padding: 2px 0px 3px 0px; font-family: "Lucida Console", Monaco, monospace; }
+p a { color: #aaffaa; }
+p span { display: inline-block; border: 1px solid #f00; padding: 4px 5px 3px; color: #f3f173; font-family: "Lucida Console", Monaco, monospace; }
 
+.hexdump #line-number { color: #1cf629; }
+.hexdump span { font: 0.855em "Courier New", Courier, mono; }
+.hexdump span[data-string-id] {
+	vertical-align: middle;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	height: 15px;
+	color: #ebaa2f;
+	width: 14px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript" src="/jquery-1.5.min.js"></script>
+<script type="text/javascript" src="/hexdump.js"></script>
 <script>
 
 var subscribe = function(url, cb) {
@@ -18,22 +42,45 @@ var subscribe = function(url, cb) {
             },
             timeout: 30000
         });
-    };
-    
+};
+
+var dump_id = 0;
+
 subscribe("/poll", function (d) {
   console.log("Data:", d);
   var t = $("#data").html();
-  t = t + "<p>" + d.src_addr +":"+ d.src_port +" ["+ d.size +"]: "+ d.msg +"</p>";
+  t = t + "<p><a>" + d.src_addr +" : "+ d.src_port +" &nbsp; <b>"+ d.size +"</b>b &nbsp; <span>"+ d.msg +"</span></p><pre class='hexdump' id='dump"+ dump_id +"'>"+ d.dump +"</pre>";
   $("#data").html(t);
+
+  new Hexdump(d.msg, {
+        container: 'dump' + dump_id
+        , base: 'hex'
+        , width: 8
+        , byteGrouping: 1
+        , html: true
+        , lineNumber: true
+        , style: {
+            lineNumberLeft: ' '
+          , lineNumberRight: ':'
+          , stringLeft: '|'
+          , stringRight: '|'
+          , hexLeft: ''
+          , hexRight: ''
+          , hexNull: '.g'
+          , stringNull: '.'
+        }
+  });
+
+
+  dump_id++;
 });
 
 </script>
 </head>
 <body>
 
-Result:
-<div id="data" style='width:100%;height:500px;display:block;border:1px solid block'> ... <br/>
-
+Ready.
+<div id="data" style='width:100%;height:500px;display:block;border:1px solid block'> waiting.. <br/>
 </div>
 </body>
 </html>

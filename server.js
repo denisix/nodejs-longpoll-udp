@@ -14,6 +14,12 @@ app.get("/jquery-1.5.min.js", function(req, res) {
 	res.sendfile('jquery-1.5.min.js')
 });
 
+app.get("/hexdump.js", function(req, res) {
+	console.log('- get hexdump');
+	res.sendfile('hexdump.js')
+});
+
+
 app.listen(8080, function() {
     console.log("Listening on port 8080");
 });
@@ -21,8 +27,9 @@ app.listen(8080, function() {
 var dgram = require('dgram')
 var socket = dgram.createSocket('udp4')
 
+
 socket.on('message', function(msg, rinfo) {
-	console.log('-'+ rinfo.address +':'+ rinfo.port +' ['+ rinfo.size +'] => ' + msg.toString());
+	console.log('-'+ rinfo.address +':'+ rinfo.port +' ['+ rinfo.size +'] => ' + msg.toString() + "\n");
 	longpoll.publish("/poll", { 
 		src_addr: rinfo.address,
 		src_port: rinfo.port,
