@@ -39,4 +39,4 @@ socket.on('message', function(msg, rinfo) {
 	});
 });
 
-socket.bind(500, '127.0.0.1');
+socket.bind(500, '0.0.0.0');
